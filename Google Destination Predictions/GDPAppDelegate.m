@@ -7,8 +7,7 @@
 //
 
 #import "GDPAppDelegate.h"
-
-#import "GDPViewController.h"
+#import "ListViewController.h"
 
 @implementation GDPAppDelegate
 
@@ -16,8 +15,12 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[GDPViewController alloc] initWithNibName:@"GDPViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
+    
+    ListViewController *lvc = [[ListViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lvc];
+    
+    [[self window] setRootViewController:nav];
     [self.window makeKeyAndVisible];
     return YES;
 }

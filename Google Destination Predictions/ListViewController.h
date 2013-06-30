@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ListViewController : NSObject
+@class GDPPredictionsResponse;
 
+@interface ListViewController : UITableViewController <NSURLConnectionDelegate, NSURLConnectionDataDelegate, NSXMLParserDelegate>
+{
+    NSURLConnection *googleConnection;
+    NSMutableData *xmlData;
+    
+    GDPPredictionsResponse *response;
+}
+
+- (void)fetchEntries;
 @end

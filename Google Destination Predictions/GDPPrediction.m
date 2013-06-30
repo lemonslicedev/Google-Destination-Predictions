@@ -10,4 +10,28 @@
 
 @implementation GDPPrediction
 
+@synthesize parentParserDelegate, predictionTitle;
+
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
+{
+    if ([elementName isEqual:@"description"]) {
+        currentString   = [[NSMutableString alloc] init];
+        [self setPredictionTitle:currentString];
+    }
+}
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+{
+    [currentString appendString:string];
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
+    currentString = nil;
+    
+    if ([elementName isEqual:@"prediction"]) {
+        [parser setDelegate:parentParserDelegate];
+    }
+}
+
 @end

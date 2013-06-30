@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GDPPrediction : NSObject
+@interface GDPPrediction : NSObject <NSXMLParserDelegate>
+{
+    NSMutableString *currentString;
+}
+
+@property (nonatomic, weak) id parentParserDelegate;
+
+@property (nonatomic, strong) NSString *predictionTitle;
 
 @end
